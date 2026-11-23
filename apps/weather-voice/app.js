@@ -1,6 +1,6 @@
 "use strict";
-const weatherStatus = get("status");
 const get = (id) => document.getElementById(id);
+const weatherStatus = get("status");
 const city = get("city");
 const status = get("status");
 const speak = get("speak");
