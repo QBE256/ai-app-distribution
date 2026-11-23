@@ -1,10 +1,14 @@
 const prefix = 'weather-voice-shell-';
-const cacheName = prefix + 'v2';
+const cacheName = prefix + 'v3';
 const shell = ['./index.html', './style.css', './app.js', './forecast.js', './manifest.webmanifest', './icon-192.png', './icon-512.png']
   .map((path) => new URL(path, self.registration.scope).href);
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(cacheName).then((cache) => cache.addAll(shell)));
+  event.waitUntil((async () => {
+    const cache = await caches.open(cacheName);
+    await cache.addAll(shell.map((asset) => new Request(asset, { cache: 'reload' })));
+    await self.skipWaiting();
+  })());
 });
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
@@ -20,6 +24,18 @@ self.addEventListener('fetch', (event) => {
   url.search = '';
   const asset = url.href === self.registration.scope ? shell[0] : url.href;
   if (!shell.includes(asset)) return;
-  event.respondWith(caches.open(cacheName).then(async (cache) =>
-    await cache.match(asset) || fetch(event.request)));
+  event.respondWith((async () => {
+    const cache = await caches.open(cacheName);
+    let response;
+    try {
+      response = await fetch(event.request, { cache: 'no-cache' });
+    } catch {
+      return await cache.match(asset) || Response.error();
+    }
+    if (response.ok) {
+      await cache.put(asset, response.clone()).catch(() => {});
+      return response;
+    }
+    return await cache.match(asset) || response;
+  })());
 });
