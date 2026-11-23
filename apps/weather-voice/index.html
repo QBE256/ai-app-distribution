@@ -8,6 +8,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./icon-192.png">
   <link rel="stylesheet" href="./style.css">
+  <script src="./forecast.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body>
@@ -15,12 +16,7 @@
     <header><img src="./icon-192.png" width="44" height="44" alt=""><h1>天気ボイス</h1></header>
     <form id="location">
       <div><label for="city">地点</label>
-        <select id="city">
-          <option value="current">現在地</option>
-          <option value="tokyo">東京</option>
-          <option value="osaka">大阪</option>
-          <option value="yokohama">横浜</option>
-        </select>
+        <select id="city"></select>
       </div>
       <button type="submit">天気を更新</button>
     </form>
@@ -31,18 +27,18 @@
       <dl>
         <div><dt>最高気温</dt><dd id="high">—</dd></div>
         <div><dt>最低気温</dt><dd id="low">—</dd></div>
-        <div><dt>降水確率</dt><dd id="rain">—</dd></div>
+        <div><dt>最大降水確率</dt><dd id="rain">—</dd></div>
       </dl>
       <p id="timestamp" hidden></p>
     </section>
     <section class="voice" aria-labelledby="voice-heading">
       <h2 id="voice-heading">音声読み上げ</h2>
       <p id="speech-text">天気を取得すると読み上げ文が表示されます。</p>
-      <button id="speak" disabled>今日の天気を読み上げる</button>
-      <button id="stop" disabled>読み上げ停止</button>
+      <button id="speak" disabled>ずんだもんの天気予報を聞く</button>
+      <button id="stop" disabled>停止</button>
       <p id="speech-status" role="status" hidden></p>
     </section>
-    <footer><a href="https://open-meteo.com/">天気データ：Open-Meteo</a></footer>
+    <footer>VOICEVOX:ずんだもん<br><a href="https://open-meteo.com/">天気データ：Open-Meteo</a></footer>
   </main>
 </body>
 </html>

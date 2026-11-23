@@ -1,18 +1,5 @@
 'use strict';
 
-const cities = {
-  tokyo: [35.6762, 139.6503],
-  osaka: [34.6937, 135.5023],
-  yokohama: [35.4437, 139.6380]
-};
-const weatherGroups = [
-  [[0], '晴れ'], [[1, 2], '晴れ時々曇り'], [[3], '曇り'],
-  [[45, 48], '霧'], [[51, 53, 55, 56, 57], '霧雨'],
-  [[61, 63, 65, 66, 67], '雨'], [[71, 73, 75, 77], '雪'],
-  [[80, 81, 82], 'にわか雨'], [[85, 86], 'にわか雪'],
-  [[95, 96, 99], '雷雨']
-];
-const fields = ['weather_code', 'temperature_2m_max', 'temperature_2m_min', 'precipitation_probability_max'];
 const get = (id) => document.getElementById(id);
 const city = get('city');
 const status = get('status');
@@ -21,10 +8,14 @@ const stop = get('stop');
 const speechStatus = get('speech-status');
 const synthesis = window.speechSynthesis;
 const speechAvailable = Boolean(synthesis && window.SpeechSynthesisUtterance);
-let reading = '';
+let bundle = read('published-forecast');
+let entry;
+let audio;
 let utterance;
-let requestId = 0;
 let controller;
+const canPlayAudio = () => Boolean(entry?.audio && navigator.onLine);
+const canSpeak = () => speechAvailable && (navigator.onLine ||
+  synthesis.getVoices().some(({ lang, localService }) => /^ja\b/i.test(lang) && localService));
 
 function read(key) {
   try {
@@ -42,139 +33,122 @@ function save(key, value) {
   }
 }
 
-function stopReading() {
+function stopReading(message = '') {
+  if (audio) {
+    audio.pause();
+    audio = undefined;
+  }
   if (utterance) {
     utterance = undefined;
     synthesis.cancel();
   }
   stop.disabled = true;
+  speechStatus.textContent = message;
+  speechStatus.hidden = !message;
 }
 
-function render(data, cached = false) {
+function render() {
   stopReading();
-  const weather = data && weatherGroups.find(([codes]) => codes.includes(data.code))?.[1];
-  const day = data ? data.date.replace(/-/g, '/') + ' の天気' : '今日の天気';
-  get('date').textContent = day;
-  get('heading').textContent = weather || (data ? '天気不明' : '天気情報なし');
-
-  const parts = [];
-  if (weather) parts.push((cached ? day : '今日の天気') + 'は' + weather + '。');
-  for (const [id, label, unit, spokenUnit] of [
-    ['high', '最高気温', '℃', '度'],
-    ['low', '最低気温', '℃', '度'],
-    ['rain', '降水確率', '%', 'パーセント']
-  ]) {
-    const value = data?.[id];
-    get(id).textContent = Number.isFinite(value) ? value + unit : '—';
-    if (Number.isFinite(value)) parts.push(label + 'は' + value + spokenUnit + '。');
+  entry = bundle?.regions[city.value];
+  const previous = entry && bundle.date !== forecast.dateInTokyo();
+  get('date').textContent = entry
+    ? (previous ? '前回の予報' : '今日の天気') + '（' + bundle.date.replace(/-/g, '/') + '）'
+    : '今日の天気';
+  get('heading').textContent = forecast.weather(entry?.code) || (entry ? '天気不明' : '天気情報なし');
+  for (const [field, unit] of [['high', '℃'], ['low', '℃'], ['rain', '%']]) {
+    get(field).textContent = Number.isFinite(entry?.[field]) ? entry[field] + unit : '—';
   }
-  reading = parts.length ? (cached ? '保存済みの天気です。' : '') + parts.join('') : '';
-  get('speech-text').textContent = reading || '読み上げられる天気情報がありません。';
-  speak.disabled = !speechAvailable || !reading;
+  get('speech-text').textContent = entry?.script || '予報を取得すると読み上げ文が表示されます。';
+  speak.textContent = entry && !canPlayAudio() && canSpeak()
+    ? '端末の音声で天気予報を聞く' : 'ずんだもんの天気予報を聞く';
+  speak.disabled = !entry || (!canPlayAudio() && !canSpeak());
   const timestamp = get('timestamp');
-  timestamp.hidden = !data;
-  timestamp.textContent = data ? '取得日時：' + new Date(data.fetchedAt).toLocaleString('ja-JP') : '';
-}
-
-function coordinates(selection) {
-  if (selection !== 'current') return cities[selection];
-  return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) {
-      reject(new Error('位置情報を利用できません'));
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => resolve([coords.latitude, coords.longitude]), reject, { timeout: 10000 }
-    );
-  });
+  timestamp.hidden = !entry;
+  timestamp.textContent = entry ? '更新日時：' + new Date(bundle.updatedAt)
+    .toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }) + '（日本時間）' : '';
 }
 
 async function update() {
-  const id = ++requestId;
   controller?.abort();
   controller = new AbortController();
   const { signal } = controller;
-  const selection = city.value;
-  const cached = read('forecast:' + selection);
-  render(cached, true);
-  const cacheMessage = cached ? ' 保存済みの天気を表示しています。' : '';
-  if (!navigator.onLine) {
-    status.textContent = 'オフラインのため天気を取得できません。' + cacheMessage;
-    return;
-  }
-
-  status.textContent = (selection === 'current' ? '現在地を確認しています。' : '天気を取得しています。') + cacheMessage;
-  let point;
+  status.textContent = '天気を取得しています。';
   try {
-    point = await coordinates(selection);
+    const response = await fetch('./forecast.json', { cache: 'no-store', signal });
+    if (!response.ok) throw new Error('天気の取得に失敗');
+    const data = await response.json();
+    if (signal.aborted) return;
+    if (!forecast.valid(data)) throw new Error('予報データが不足');
+    bundle = data;
+    save('published-forecast', data);
+    render();
+    status.textContent = '';
   } catch {
-    if (id === requestId) status.textContent = '位置情報を取得できません。地点から都市を選んでください。' + cacheMessage;
-    return;
-  }
-  if (id !== requestId) return;
-  status.textContent = '天気を取得しています。' + cacheMessage;
-  try {
-    const params = new URLSearchParams({
-      latitude: point[0], longitude: point[1], daily: fields.join(','),
-      timezone: 'auto', forecast_days: '1'
-    });
-    const response = await fetch('https://api.open-meteo.com/v1/forecast?' + params, { signal });
-    if (!response.ok) throw new Error('Forecast request failed');
-    const { daily } = await response.json();
-    if (id !== requestId) return;
-    const [code, high, low, rain] = fields.map((field) => daily?.[field]?.[0]);
-    const date = daily?.time?.[0];
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || ![code, high, low, rain].some(Number.isFinite)) {
-      status.textContent = '天気データが不足しています。' + cacheMessage;
-      return;
-    }
-    const data = { date, code, high, low, rain, fetchedAt: Date.now() };
-    save('forecast:' + selection, data);
-    render(data);
-    status.textContent = weatherGroups.some(([codes]) => codes.includes(code)) &&
-      [high, low, rain].every(Number.isFinite) ? '' : '一部の天気データが不足しています。';
-  } catch {
-    if (id === requestId) status.textContent = '天気を取得できませんでした。通信を確認して再度お試しください。' + cacheMessage;
+    if (signal.aborted) return;
+    status.textContent = (navigator.onLine ? '天気を取得できませんでした。' : 'オフラインです。') +
+      (bundle ? '保存済みの天気を表示しています。' : '予報の公開後にもう一度お試しください。');
   }
 }
 
-if (!speechAvailable) {
-  speechStatus.hidden = false;
-  speechStatus.textContent = 'この環境では音声読み上げを利用できません。';
-}
 speak.addEventListener('click', () => {
-  stopReading();
-  speechStatus.hidden = true;
-  const next = new SpeechSynthesisUtterance(reading);
+  stopReading('音声を準備しています。');
+  stop.disabled = false;
+  if (canPlayAudio()) {
+    const next = new Audio(entry.audio);
+    audio = next;
+    next.onplaying = () => {
+      if (audio === next) speechStatus.textContent = '再生中';
+    };
+    next.onended = () => {
+      if (audio === next) stopReading();
+    };
+    const fail = () => {
+      if (audio === next) stopReading('音声を再生できませんでした。');
+    };
+    next.onerror = fail;
+    next.play().catch(fail);
+    return;
+  }
+  const next = new SpeechSynthesisUtterance(entry.script);
   next.lang = 'ja-JP';
-  const voice = synthesis.getVoices().find(({ lang, localService }) => /^ja\b/i.test(lang) && localService)
-    || synthesis.getVoices().find(({ lang }) => /^ja\b/i.test(lang));
+  const voices = synthesis.getVoices();
+  const voice = voices.find(({ lang, localService }) => /^ja\b/i.test(lang) && localService)
+    || (navigator.onLine && voices.find(({ lang }) => /^ja\b/i.test(lang)));
   if (voice) next.voice = voice;
   next.onend = next.onerror = (event) => {
-    if (utterance !== next) return;
-    utterance = undefined;
-    stop.disabled = true;
-    if (event.type === 'error') {
-      speechStatus.hidden = false;
-      speechStatus.textContent = '音声を再生できませんでした。';
+    if (utterance === next) {
+      utterance = undefined;
+      stopReading(event.type === 'error' ? '音声を再生できませんでした。' : '');
     }
   };
   utterance = next;
-  stop.disabled = false;
+  speechStatus.textContent = '再生中';
   synthesis.speak(next);
 });
-stop.addEventListener('click', stopReading);
+stop.addEventListener('click', () => stopReading());
 
+if (!forecast.valid(bundle)) bundle = null;
+for (const [id, [label]] of Object.entries(forecast.regions)) city.add(new Option(label, id));
 const savedCity = read('city');
-if (Object.hasOwn(cities, savedCity)) city.value = savedCity;
+city.value = Object.hasOwn(forecast.regions, savedCity) ? savedCity : 'tokyo';
 city.addEventListener('change', () => {
   save('city', city.value);
-  update();
+  render();
 });
 get('location').addEventListener('submit', (event) => {
   event.preventDefault();
   update();
 });
-window.addEventListener('offline', update);
+for (const event of ['online', 'offline']) {
+  window.addEventListener(event, () => {
+    render();
+    update();
+  });
+}
+synthesis?.addEventListener('voiceschanged', () => {
+  if (!navigator.onLine && !utterance) render();
+});
+window.addEventListener('pageshow', render);
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+render();
 update();

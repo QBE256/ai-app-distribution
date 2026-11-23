@@ -44,3 +44,6 @@ dd { margin: .15rem 0 0; font-size: 1.25rem; font-weight: 700; }
 #stop { margin-top: .5rem; }
 footer { margin-top: .5rem; }
 footer a { display: inline-flex; align-items: center; min-height: 44px; color: #125477; }
+@media (max-width: 430px) {
+  form { grid-template-columns: 1fr; }
+}

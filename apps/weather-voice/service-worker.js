@@ -1,6 +1,6 @@
 const prefix = 'weather-voice-shell-';
-const cacheName = prefix + 'v1';
-const shell = ['./index.html', './style.css', './app.js', './manifest.webmanifest', './icon-192.png', './icon-512.png']
+const cacheName = prefix + 'v2';
+const shell = ['./index.html', './style.css', './app.js', './forecast.js', './manifest.webmanifest', './icon-192.png', './icon-512.png']
   .map((path) => new URL(path, self.registration.scope).href);
 
 self.addEventListener('install', (event) => {
