@@ -1,0 +1,776 @@
+{
+  "date": "2026-11-23",
+  "updatedAt": "2026-11-23T08:40:52.923Z",
+  "regions": {
+    "tokyo": {
+      "code": 0,
+      "high": 13.1,
+      "low": 3.9,
+      "rain": 0,
+      "hours": [
+        {
+          "hour": 0,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.6
+        },
+        {
+          "hour": 1,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.5
+        },
+        {
+          "hour": 2,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.6
+        },
+        {
+          "hour": 3,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.6
+        },
+        {
+          "hour": 4,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.3
+        },
+        {
+          "hour": 5,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.2
+        },
+        {
+          "hour": 6,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.5
+        },
+        {
+          "hour": 7,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.6
+        },
+        {
+          "hour": 8,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.5
+        },
+        {
+          "hour": 9,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.2
+        },
+        {
+          "hour": 10,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.9
+        },
+        {
+          "hour": 11,
+          "code": 0,
+          "rain": 0,
+          "wind": 1.8
+        },
+        {
+          "hour": 12,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.3
+        },
+        {
+          "hour": 13,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.7
+        },
+        {
+          "hour": 14,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.7
+        },
+        {
+          "hour": 15,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.5
+        },
+        {
+          "hour": 16,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.2
+        },
+        {
+          "hour": 17,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.1
+        },
+        {
+          "hour": 18,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.3
+        },
+        {
+          "hour": 19,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.5
+        },
+        {
+          "hour": 20,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.6
+        },
+        {
+          "hour": 21,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.6
+        },
+        {
+          "hour": 22,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.2
+        },
+        {
+          "hour": 23,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.3
+        }
+      ],
+      "script": "11月23日、東京都、東京周辺の天気をお伝えします。一日の予報は晴れです。朝は晴れの予報です。昼は晴れの予報です。夕方は晴れの予報です。夜は晴れの予報です。最高気温は13.1度です。最低気温は3.9度です。一日の最大降水確率は0パーセントです。冷え込む時間に備えて、上着があると安心です。",
+      "audio": "audio/tokyo-b2a2efc90171722c44536d4fa537bfed71434b91f3176c3be0de66c57c504404.mp3"
+    },
+    "kanagawa": {
+      "code": 0,
+      "high": 13.3,
+      "low": 5.5,
+      "rain": 0,
+      "hours": [
+        {
+          "hour": 0,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.3
+        },
+        {
+          "hour": 1,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.6
+        },
+        {
+          "hour": 2,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.6
+        },
+        {
+          "hour": 3,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.8
+        },
+        {
+          "hour": 4,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.9
+        },
+        {
+          "hour": 5,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.3
+        },
+        {
+          "hour": 6,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.5
+        },
+        {
+          "hour": 7,
+          "code": 0,
+          "rain": 0,
+          "wind": 6.1
+        },
+        {
+          "hour": 8,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.2
+        },
+        {
+          "hour": 9,
+          "code": 0,
+          "rain": 0,
+          "wind": 6.3
+        },
+        {
+          "hour": 10,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.4
+        },
+        {
+          "hour": 11,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.6
+        },
+        {
+          "hour": 12,
+          "code": 0,
+          "rain": 0,
+          "wind": 6.6
+        },
+        {
+          "hour": 13,
+          "code": 0,
+          "rain": 0,
+          "wind": 6.7
+        },
+        {
+          "hour": 14,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.1
+        },
+        {
+          "hour": 15,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.3
+        },
+        {
+          "hour": 16,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.4
+        },
+        {
+          "hour": 17,
+          "code": 0,
+          "rain": 0,
+          "wind": 8.2
+        },
+        {
+          "hour": 18,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.6
+        },
+        {
+          "hour": 19,
+          "code": 0,
+          "rain": 0,
+          "wind": 8.9
+        },
+        {
+          "hour": 20,
+          "code": 0,
+          "rain": 0,
+          "wind": 10.4
+        },
+        {
+          "hour": 21,
+          "code": 0,
+          "rain": 0,
+          "wind": 10.8
+        },
+        {
+          "hour": 22,
+          "code": 0,
+          "rain": 0,
+          "wind": 11
+        },
+        {
+          "hour": 23,
+          "code": 0,
+          "rain": 0,
+          "wind": 12.2
+        }
+      ],
+      "script": "11月23日、神奈川県、横浜周辺の天気をお伝えします。一日の予報は晴れです。朝は晴れの予報です。昼は晴れの予報です。夕方は晴れの予報です。夜は晴れの予報です。最高気温は13.3度です。最低気温は5.5度です。一日の最大降水確率は0パーセントです。冷え込む時間に備えて、上着があると安心です。",
+      "audio": "audio/kanagawa-6b8a9d288ba069ac3af265e475139fdacc6a0f6bdaa03c5d76c7e3876c270969.mp3"
+    },
+    "ibaraki": {
+      "code": 2,
+      "high": 12.4,
+      "low": 2,
+      "rain": 0,
+      "hours": [
+        {
+          "hour": 0,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.9
+        },
+        {
+          "hour": 1,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.1
+        },
+        {
+          "hour": 2,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.6
+        },
+        {
+          "hour": 3,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.1
+        },
+        {
+          "hour": 4,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.1
+        },
+        {
+          "hour": 5,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.1
+        },
+        {
+          "hour": 6,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.8
+        },
+        {
+          "hour": 7,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.1
+        },
+        {
+          "hour": 8,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.2
+        },
+        {
+          "hour": 9,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.1
+        },
+        {
+          "hour": 10,
+          "code": 0,
+          "rain": 0,
+          "wind": 4
+        },
+        {
+          "hour": 11,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.6
+        },
+        {
+          "hour": 12,
+          "code": 2,
+          "rain": 0,
+          "wind": 7.2
+        },
+        {
+          "hour": 13,
+          "code": 1,
+          "rain": 0,
+          "wind": 7.2
+        },
+        {
+          "hour": 14,
+          "code": 1,
+          "rain": 0,
+          "wind": 7.2
+        },
+        {
+          "hour": 15,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.5
+        },
+        {
+          "hour": 16,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.5
+        },
+        {
+          "hour": 17,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.4
+        },
+        {
+          "hour": 18,
+          "code": 0,
+          "rain": 0,
+          "wind": 6.6
+        },
+        {
+          "hour": 19,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.6
+        },
+        {
+          "hour": 20,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.5
+        },
+        {
+          "hour": 21,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.2
+        },
+        {
+          "hour": 22,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.5
+        },
+        {
+          "hour": 23,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.6
+        }
+      ],
+      "script": "11月23日、茨城県、水戸周辺の天気をお伝えします。一日の予報は雲のある晴れです。朝は晴れの予報です。昼は雲のある晴れや晴れの予報です。夕方は晴れの予報です。夜は晴れの予報です。最高気温は12.4度です。最低気温は2度です。一日の最大降水確率は0パーセントです。冷え込む時間に備えて、上着があると安心です。",
+      "audio": "audio/ibaraki-e296b94b26bbbb9120e544afecbcf4e40264a63fe836401d68d701077d95c6de.mp3"
+    },
+    "chiba": {
+      "code": 2,
+      "high": 13.4,
+      "low": 5.2,
+      "rain": 0,
+      "hours": [
+        {
+          "hour": 0,
+          "code": 0,
+          "rain": 0,
+          "wind": 8.6
+        },
+        {
+          "hour": 1,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.3
+        },
+        {
+          "hour": 2,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.3
+        },
+        {
+          "hour": 3,
+          "code": 0,
+          "rain": 0,
+          "wind": 8
+        },
+        {
+          "hour": 4,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.9
+        },
+        {
+          "hour": 5,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.2
+        },
+        {
+          "hour": 6,
+          "code": 0,
+          "rain": 0,
+          "wind": 8
+        },
+        {
+          "hour": 7,
+          "code": 0,
+          "rain": 0,
+          "wind": 8
+        },
+        {
+          "hour": 8,
+          "code": 1,
+          "rain": 0,
+          "wind": 6.8
+        },
+        {
+          "hour": 9,
+          "code": 2,
+          "rain": 0,
+          "wind": 5.4
+        },
+        {
+          "hour": 10,
+          "code": 2,
+          "rain": 0,
+          "wind": 4.7
+        },
+        {
+          "hour": 11,
+          "code": 1,
+          "rain": 0,
+          "wind": 3.3
+        },
+        {
+          "hour": 12,
+          "code": 1,
+          "rain": 0,
+          "wind": 5
+        },
+        {
+          "hour": 13,
+          "code": 1,
+          "rain": 0,
+          "wind": 4.4
+        },
+        {
+          "hour": 14,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.9
+        },
+        {
+          "hour": 15,
+          "code": 0,
+          "rain": 0,
+          "wind": 6.8
+        },
+        {
+          "hour": 16,
+          "code": 0,
+          "rain": 0,
+          "wind": 6.1
+        },
+        {
+          "hour": 17,
+          "code": 0,
+          "rain": 0,
+          "wind": 6.3
+        },
+        {
+          "hour": 18,
+          "code": 0,
+          "rain": 0,
+          "wind": 6.6
+        },
+        {
+          "hour": 19,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.1
+        },
+        {
+          "hour": 20,
+          "code": 0,
+          "rain": 0,
+          "wind": 9.4
+        },
+        {
+          "hour": 21,
+          "code": 0,
+          "rain": 0,
+          "wind": 10.6
+        },
+        {
+          "hour": 22,
+          "code": 0,
+          "rain": 0,
+          "wind": 11.4
+        },
+        {
+          "hour": 23,
+          "code": 0,
+          "rain": 0,
+          "wind": 13.4
+        }
+      ],
+      "script": "11月23日、千葉県、千葉周辺の天気をお伝えします。一日の予報は雲のある晴れです。朝は晴れや雲のある晴れの予報です。昼は雲のある晴れや晴れの予報です。夕方は晴れの予報です。夜は晴れの予報です。最高気温は13.4度です。最低気温は5.2度です。一日の最大降水確率は0パーセントです。冷え込む時間に備えて、上着があると安心です。",
+      "audio": "audio/chiba-e5acb76ad84af72f0f0918ff7d3816418f9802196443da39eb9ab28399897201.mp3"
+    },
+    "saitama": {
+      "code": 0,
+      "high": 13.4,
+      "low": 3.5,
+      "rain": 0,
+      "hours": [
+        {
+          "hour": 0,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.8
+        },
+        {
+          "hour": 1,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.4
+        },
+        {
+          "hour": 2,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.3
+        },
+        {
+          "hour": 3,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.3
+        },
+        {
+          "hour": 4,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.1
+        },
+        {
+          "hour": 5,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.6
+        },
+        {
+          "hour": 6,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.8
+        },
+        {
+          "hour": 7,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.1
+        },
+        {
+          "hour": 8,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.8
+        },
+        {
+          "hour": 9,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.2
+        },
+        {
+          "hour": 10,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.7
+        },
+        {
+          "hour": 11,
+          "code": 0,
+          "rain": 0,
+          "wind": 2.2
+        },
+        {
+          "hour": 12,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.6
+        },
+        {
+          "hour": 13,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.6
+        },
+        {
+          "hour": 14,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.5
+        },
+        {
+          "hour": 15,
+          "code": 0,
+          "rain": 0,
+          "wind": 7.7
+        },
+        {
+          "hour": 16,
+          "code": 0,
+          "rain": 0,
+          "wind": 6
+        },
+        {
+          "hour": 17,
+          "code": 0,
+          "rain": 0,
+          "wind": 3.9
+        },
+        {
+          "hour": 18,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.1
+        },
+        {
+          "hour": 19,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.8
+        },
+        {
+          "hour": 20,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.8
+        },
+        {
+          "hour": 21,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.1
+        },
+        {
+          "hour": 22,
+          "code": 0,
+          "rain": 0,
+          "wind": 5.1
+        },
+        {
+          "hour": 23,
+          "code": 0,
+          "rain": 0,
+          "wind": 4.8
+        }
+      ],
+      "script": "11月23日、埼玉県、さいたま周辺の天気をお伝えします。一日の予報は晴れです。朝は晴れの予報です。昼は晴れの予報です。夕方は晴れの予報です。夜は晴れの予報です。最高気温は13.4度です。最低気温は3.5度です。一日の最大降水確率は0パーセントです。冷え込む時間に備えて、上着があると安心です。",
+      "audio": "audio/saitama-b28007411e602361cbadc90cff34294e22e77f46fac2678502795c2a35971ad3.mp3"
+    }
+  }
+}
